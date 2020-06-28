@@ -1,17 +1,16 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import numpy as np
 import random
+import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-import numpy as np
 import altair as alt
 import pydeck as pdk
 
 #URL = "https://data.cityofnewyork.us/api/views/h9gi-nx95/rows.csv?accessType=DOWNLOAD"
-#URL = "~/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv"
+URL = "~/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv"
 NUM_RECORDS = 1686115
-
 
 st.title("Motor Vehicle Collisions in New York City")
 st.markdown(
@@ -19,7 +18,7 @@ st.markdown(
     \n If interested: 
     
     \n [See source data](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95)
-    \n [See source code](https://github.com/inespancorbo/Web-Apps/tree/master/Motor-Vehicle-Collisions-NYC)
+    \n [See source code](https://github.com/inespancorbo/Web-Apps/blob/master/Motor-Vehicle-Collisions-NYC/webapp-MVA.py)
     """)
 
 st.markdown(
@@ -75,12 +74,14 @@ if st.checkbox('Show Raw Data'):
     st.write(data)
     load_state.text('Loading Completed!')
 
+# Pie charts
 ###############################################################################################################
 st.header("Yearly Motor Vehicle Collision Injuries by Type")
 option = st.selectbox('Choose a category:', new_names)
 st.write(px.pie(data, values=str(option), names='year', title=str(option)))
 ###############################################################################################################
 
+# 2D map
 ###############################################################################################################
 st.header('Where are the most people injured/killed in NYC?')
 option = st.selectbox('Select an option', ['Injured', 'Killed'])
@@ -88,9 +89,49 @@ gpd_data = pd.DataFrame(data.query(f'`Number Of People {option}` > 0').groupby([
     f'Number Of People {option}'].sum()).reset_index()
 max = gpd_data[f'Number Of People {option}'].max()
 st.write('Number of People ', option, ' in Vehicle Collisions')
-num_people = st.slider('', 0, int(max))
+if max > 1:
+    num_people = st.slider('', 1, int(max))
+else:
+    num_people = 0
 st.map(gpd_data.query(f'`Number Of People {option}` > @num_people')[['latitude', 'longitude']])
 ###############################################################################################################
 
+# 3D map
+###############################################################################################################
+st.header('How many collisions occur during a given time of day?')
+hour = st.slider('Hour to look at:', 0, 23)
+hr_data = data[data['date'].dt.hour == hour]
+
+year = st.selectbox('Select a year:', [2013, 2014, 2015, 2016, 2017, 2018, 2019, "All Years"])
+month = st.slider('Select a month (0 for all months):', 0, 12)
+st.markdown('Vehicle Collisions between %i:00 and %i:00' % (hour, (hour + 1) % 24))
+
+if hour in range(7, 19):
+    color = 'light'
+else:
+    color = 'dark'
+
+st.write(pdk.Deck(
+    map_style=f'mapbox://styles/mapbox/{color}-v9',
+    initial_view_state={
+        'latitude': np.average(data['latitude']),
+        'longitude': np.average(data['longitude']),
+        'zoom': 10,
+        'pitch': 60,
+    },
+    layers=[
+        pdk.Layer(
+            'HexagonLayer',
+            data=hr_data[['date', 'latitude', 'longitude']],
+            get_position=['longitude', 'latitude'],
+            radius=100,
+            extruded=True,
+            pickable=True,
+            elevation_scale=4,
+            elevation_range=[0, 100],
+        ),
+    ],
+))
+###############################################################################################################
 
 
