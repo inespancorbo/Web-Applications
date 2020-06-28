@@ -12,4 +12,4 @@ This application is a Streamlit dashboard that can be used to analyze motor vehi
 
 [Link to app]()
 
-****Work in Progress****
+****(Work in Progress)****
