@@ -28,7 +28,7 @@ st.markdown(
     \n Use the option below if you want the analysis to look at a subset of the ~ 1.6 million records. 
     Bear in mind some aspects of the analysis will be nonsensical if we are missing records.
     If you want the entire dataset please choose the maximum number on the slider 
-    and be patient as you go through the analysis! Have fun 😊😊😊
+    and be patient as visualizations load! Have fun 😊😊😊
     """)
 
 nrows = st.slider('Select how many records:', 1, NUM_RECORDS, 1)
