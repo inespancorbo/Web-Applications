@@ -31,3 +31,15 @@ port = $PORT\n\
 3. Create Procfile
 
 ``echo "web: sh setup.sh && streamlit run app.py" >> Procfile.txt``
+
+4. Login to Heroku
+
+Login into the CLI using your Heroku account. For this open a terminal, move into the application folder and then execute heroku login.
+
+```
+(base) Iness-MBP-2:~ inespancorbo$ heroku login
+heroku: Press any key to open up the browser to login or q to exit: 
+Opening browser to https://cli-auth.heroku.com/auth/cli/browser/a1356fd5-7315-42dd-93c3-5eb76628b304
+Logging in... done
+Logged in as <user>
+```
