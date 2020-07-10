@@ -43,3 +43,21 @@ Opening browser to https://cli-auth.heroku.com/auth/cli/browser/a1356fd5-7315-42
 Logging in... done
 Logged in as <user>
 ```
+
+5. Create empty git repository
+
+``` git init ```
+
+6. Create heorku app
+
+``` heroku create```
+
+7. Do the following:
+
+```
+git add .
+git commit -m "something"
+git push heroku master
+```
+
+Done!
