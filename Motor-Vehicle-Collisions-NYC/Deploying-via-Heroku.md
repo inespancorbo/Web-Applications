@@ -30,7 +30,7 @@ port = $PORT\n\
 
 3. Create Procfile
 
-``echo "web: sh setup.sh && streamlit run app.py" >> Procfile.txt``
+``echo "web: sh setup.sh && streamlit run app.py" >> Procfile``
 
 4. Login to Heroku
 
