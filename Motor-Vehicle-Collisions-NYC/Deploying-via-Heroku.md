@@ -10,7 +10,8 @@ Install (if unavailable) and include path to codebase
 
 Save the following in codebase as setup.sh. Make sure to change to relevant email.
 
-```mkdir -p ~/.streamlit/
+```
+mkdir -p ~/.streamlit/
 
 echo "\
 [general]\n\
@@ -22,4 +23,5 @@ echo "\
 headless = true\n\
 enableCORS=false\n\
 port = $PORT\n\
-" > ~/.streamlit/config.toml```
+" > ~/.streamlit/config.toml
+```
