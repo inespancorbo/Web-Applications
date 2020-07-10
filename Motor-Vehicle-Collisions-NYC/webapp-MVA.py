@@ -8,8 +8,8 @@ import plotly.graph_objects as go
 import altair as alt
 import pydeck as pdk
 
-# URL = "https://data.cityofnewyork.us/api/views/h9gi-nx95/rows.csv?accessType=DOWNLOAD"
-URL = "~/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv"
+URL = "https://data.cityofnewyork.us/api/views/h9gi-nx95/rows.csv?accessType=DOWNLOAD"
+# URL = "~/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv"
 NUM_RECORDS = 1686115
 
 st.title("Motor Vehicle Collisions in New York City")
