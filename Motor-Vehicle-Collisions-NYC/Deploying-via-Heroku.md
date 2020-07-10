@@ -2,7 +2,7 @@
 
 Install and include path to codebase
 
-``pip install pipreqs
+``pip install pipreqs``
 
 
 pipreqs <directory path>
