@@ -11,10 +11,12 @@ Install (if unavailable) and include path to codebase
 Save the following in codebase as setup.sh. Make sure to change to relevant email.
 
 `` mkdir -p ~/.streamlit/
+
 echo "\
 [general]\n\
 email = \"your@domain.com\"\n\
 " > ~/.streamlit/credentials.toml
+
 echo "\
 [server]\n\
 headless = true\n\
