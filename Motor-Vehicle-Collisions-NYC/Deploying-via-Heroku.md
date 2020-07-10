@@ -27,3 +27,7 @@ enableCORS=false\n\
 port = $PORT\n\
 " > ~/.streamlit/config.toml
 ```
+
+3. Create Procfile
+
+``echo "web: sh setup.sh && streamlit run app.py" >> Procfile.txt``
