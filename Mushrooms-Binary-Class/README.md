@@ -8,4 +8,4 @@ A Streamlit App with dashboards allowing users to decide on supervised machine l
 
 [See source code](https://github.com/inespancorbo/Web-Applications/blob/master/Mushrooms-Binary-Class/app.py)
 
-[See app](https://fierce-journey-29902.herokuapp.com)
+[See app](https://aqueous-castle-40527.herokuapp.com)
