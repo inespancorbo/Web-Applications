@@ -1,4 +1,4 @@
-# Streamlit Dashboards for Binary Classification on Mushroom Data
+# Binary Classification on Mushroom Data Set
 
 ## Edible or poisonous? 🍄🍴
 
